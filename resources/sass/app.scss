@@ -16,3 +16,10 @@ $fa-font-path:  "../webfonts";
 
 //admin-lte
 @import '~admin-lte/dist/css/adminlte.css';
+
+
+//active navbar
+.router-link-exact-active{
+    background-color: #3f51b5;
+    color: #fff !important;
+}
