@@ -9,9 +9,48 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 
+//import vform
+import { Form, HasError, AlertError } from 'vform'
+
+// import sweetalert
+import swal from 'sweetalert2'
+window.swal = swal;
+
+//register toast globally to display the sweetalert
+const toast = swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+})
+
+//register toast to the window
+window.toast = toast;
+
+
+
+//import moment js
+import moment from 'moment'
+
+window.Form = Form;
+//register global components
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
 //import vue router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
+
+//import vue progressbar
+import VueProgressBar from 'vue-progressbar' 
+
+//progressbar component
+Vue.use(VueProgressBar, {
+  color: 'rgb(143,, 255, 199)',
+  failedColor: 'red',
+  height: '3px'
+});
 
 
 //register routes
@@ -27,6 +66,21 @@ const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`
 })
+
+
+//convert text to uppercase
+Vue.filter('upText', function(text){
+  return text.charAt(0).toUpperCase() +text.slice(1);
+});
+
+//moment filter for date
+Vue.filter('myDate', function(created){
+  return moment(created).format('MMMM Do YYYY');
+});
+
+
+
+window.Fire = new Vue();
 
 
 /**
